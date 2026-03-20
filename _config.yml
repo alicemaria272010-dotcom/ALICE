@@ -1,0 +1,5 @@
+---
+# Configurations for GitHub Pages
+# Ensure Jekyll is disabled
+jekyll: false
+---
