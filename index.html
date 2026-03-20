@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Quebre o Silêncio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    background: #ffffff;
+    color: #333;
+}
+
+/* MENU */
+.menu {
+    width: 220px;
+    background: #8b0000;
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.menu button:hover {
+    background: #b30000;
+    padding-left: 25px;
+    transition: 0.3s;
+}
+
+/* CONTEÚDO */
+.conteudo {
+    margin-left: 220px;
+    width: 100%;
+}
+
+/* ABAS */
+.aba {
+    display: none;
+    padding: 20px;
+}
+
+.ativa {
+    display: block;
+}
+
+/* FUNDO INÍCIO */
+.fundo-inicio {
+    background: url("fundo.jpg") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+/* OVERLAY SEM FUNDO */
+.overlay {
+    background: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+}
+
+/* TÍTULO VERMELHO VISÍVEL */
+.overlay h1 {
+    font-size: 42px;
+    color: #ff0000;
+    margin: 0;
+    text-shadow: 2px 2px 8px black, 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* CARD */
+.card {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px 0;
+    border-left: 5px solid #b30000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* CARD DO INÍCIO */
+.overlay .card {
+    max-width: 400px;
+    width: 90%;
+    background: rgba(255,255,255,0.9);
+}
+
+/* BOTÕES */
+.botao {
+    background: #b30000;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background: #800000;
+}
+
+/* BOTÃO EMERGÊNCIA */
+.emergencia {
+    background: #ff0000;
+    font-weight: bold;
+    padding: 15px 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    box-shadow: 0 0 15px rgba(255,0,0,0.5);
+}
+
+.emergencia:hover {
+    background: #cc0000;
+}
+
+.grupo-botoes .botao {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+}
+
+/* RELATOS */
+textarea {
+    width: 90%;
+    height: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+ul {
+    text-align: left;
+}
+
+.frase-final {
+    text-align: center;
+    font-style: italic;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div class="menu">
+    <button onclick="trocarAba('inicio')">🏠 Início</button>
+    <button onclick="trocarAba('ajuda')">📞 Ajuda</button>
+    <button onclick="trocarAba('relatos')">💬 Relatos</button>
+    <button onclick="trocarAba('feminicidio')">📚 Feminicídio</button>
+    <button onclick="trocarAba('instagram')">📱 Instagram</button>
+    <button onclick="trocarAba('vitimas')">🕊️ Vítimas</button>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="conteudo">
+
+<!-- INÍCIO -->
+<div id="inicio" class="aba ativa fundo-inicio">
+    <div class="overlay">
+        <h1>🚫 Quebre o silêncio 🚫</h1>
+        <div class="card">
+            <p>O silêncio também machuca.</p>
+            <p><strong>Você não está sozinha. ❤️</strong></p>
+        </div>
+        <button class="botao emergencia" onclick="ligar180()">
+            🚨 Preciso de ajuda
+        </button>
+    </div>
+</div>
+
+<!-- AJUDA -->
+<div id="ajuda" class="aba">
+    <h1>📞 Ajuda</h1>
+    <div class="card">
+        <p><strong>Você não está sozinha.</strong></p>
+        <p>Se estiver em perigo, procure ajuda agora.</p>
+    </div>
+    <button class="botao emergencia" onclick="ligar180()">🚨 Ligar 180 agora</button>
+    <div class="grupo-botoes">
+        <button class="botao" onclick="abrirMapaDelegacia()">📍 Delegacias</button>
+        <button class="botao" onclick="abrirMapaPsicologico()">🧠 Apoio psicológico</button>
+    </div>
+    <div class="card">
+        <h3>⚠️ Sinais de alerta</h3>
+        <ul>
+            <li>Controle excessivo</li>
+            <li>Ameaças</li>
+            <li>Ciúmes extremos</li>
+            <li>Isolamento</li>
+            <li>Agressões</li>
+        </ul>
+    </div>
+</div>
+
+<!-- RELATOS -->
+<div id="relatos" class="aba">
+    <h1>💬 Relatos</h1>
+    <textarea id="textoRelato" placeholder="Escreva aqui..."></textarea><br>
+    <button class="botao" onclick="adicionarRelato()">Enviar</button>
+    <div id="listaRelatos"></div>
+</div>
+
+<!-- FEMINICÍDIO -->
+<div id="feminicidio" class="aba">
+    <h1>📚 O que é feminicídio?</h1>
+    <div class="card">
+        <p>Feminicídio é o assassinato de uma mulher por razões de gênero.</p>
+    </div>
+    <div class="card">
+        <h3>⚠️ Tipos</h3>
+        <ul>
+            <li>Íntimo</li>
+            <li>Não íntimo</li>
+            <li>Familiar</li>
+        </ul>
+    </div>
+    <div class="card frase-final">
+        <p><strong>🚫 Não é amor. É violência.</strong></p>
+    </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div id="instagram" class="aba">
+    <h1>📱 Nosso Instagram</h1>
+    <div class="card">
+        <p>@quebreosilencio2026</p>
+        <button class="botao" onclick="abrirInstagram()">Abrir</button>
+    </div>
+</div>
+
+<!-- VÍTIMAS -->
+<div id="vitimas" class="aba">
+    <h1>🕊️ Vítimas</h1>
+    <div class="card">
+        <p>Este espaço é dedicado às vítimas e à conscientização.</p>
+    </div>
+</div>
+
+</div>
+
+<script>
+function trocarAba(id) {
+    document.querySelectorAll(".aba").forEach(a => a.classList.remove("ativa"));
+    document.getElementById(id).classList.add("ativa");
+}
+
+function ligar180() {
+    window.open("tel:180");
+}
+
+function abrirMapaDelegacia() {
+    window.open("https://www.google.com/maps/search/delegacia+da+mulher+perto+de+mim");
+}
+
+function abrirMapaPsicologico() {
+    window.open("https://www.google.com/maps/search/apoio+psicologico+perto+de+mim");
+}
+
+function abrirInstagram() {
+    window.open("https://www.instagram.com/quebreosilencio2026/");
+}
+
+function adicionarRelato() {
+    let texto = document.getElementById("textoRelato").value;
+    if (texto.trim() !== "") {
+        let div = document.createElement("div");
+        div.className = "card";
+        div.innerText = texto;
+        document.getElementById("listaRelatos").appendChild(div);
+        document.getElementById("textoRelato").value = "";
+    }
+}
+}
+</script>
+
+</body>
+</html>
